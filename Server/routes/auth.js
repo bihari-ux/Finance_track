@@ -47,6 +47,19 @@ router.post('/login', async (req, res) => {
 
     if (user && (await user.comparePassword(password))) {
       await user.updateLastLogin();
+
+      // Send login notification email
+      try {
+        const sendEmail = require('../utils/sendEmail');
+        sendEmail({
+          email: user.email,
+          subject: 'Login Successful - Fintriq',
+          message: `Hello ${user.name},\n\nWe detected a successful login to your Fintriq account.\n\nIf this was you, you can safely ignore this email. If you did not log in, please reset your password immediately.\n\nBest regards,\nThe Fintriq Team`,
+        }).catch(err => console.log('Email notification failed:', err.message));
+      } catch (err) {
+        console.log('Failed to trigger email notification:', err.message);
+      }
+
       res.json({
         success: true,
         data: {

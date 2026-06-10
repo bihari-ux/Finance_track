@@ -162,27 +162,27 @@ function TimelineStep({ number, icon: Icon, color, title, desc, isLast }) {
 }
 
 // ─── Values Card ──────────────────────────────────────────────────
-function ValueCard({ icon: Icon, color, title, desc }) {
+function ValueCardLight({ icon: Icon, color, title, desc }) {
   return (
     <div style={{
-      background: 'rgba(255,255,255,0.04)',
-      border: '1px solid rgba(255,255,255,0.08)',
+      background: C.bgCard,
+      border: `1px solid ${C.border}`,
       borderRadius: 24, padding: '32px 28px',
-      transition: 'background 0.2s',
+      transition: 'box-shadow 0.2s, border-color 0.2s',
     }}
-    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; e.currentTarget.style.borderColor = 'rgba(18,196,139,0.25)'; }}
-    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; }}
+    onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 30px rgba(18,196,139,0.12)'; e.currentTarget.style.borderColor = '#A8EDD5'; }}
+    onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = C.border; }}
     >
       <div style={{
         width: 52, height: 52, borderRadius: 16,
-        background: `${color}22`,
+        background: `${color}15`,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         marginBottom: 20,
       }}>
         <Icon size={24} color={color} />
       </div>
-      <p style={{ margin: '0 0 10px', fontWeight: 700, fontSize: 17, color: '#fff' }}>{title}</p>
-      <p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: 'rgba(255,255,255,0.5)' }}>{desc}</p>
+      <p style={{ margin: '0 0 10px', fontWeight: 700, fontSize: 17, color: C.ink }}>{title}</p>
+      <p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: C.muted }}>{desc}</p>
     </div>
   );
 }
@@ -190,26 +190,6 @@ function ValueCard({ icon: Icon, color, title, desc }) {
 // ─── Main Component ───────────────────────────────────────────────
 export default function About() {
   const [openFaq, setOpenFaq] = useState(null);
-
-  const faqs = [
-    { q: 'Is my financial data really secure?', a: 'Yes. We use AES-256 encryption at rest and TLS 1.3 in transit — the same standards used by global banks. We are SOC 2 Type II certified and undergo independent security audits twice a year.' },
-    { q: 'Can I connect my bank accounts automatically?', a: 'Absolutely. We integrate with 12,000+ banks, credit unions, and brokerages worldwide through our secure Plaid and Finicity connections. Read-only access means we can never move your money.' },
-    { q: 'What happens after my free trial ends?', a: "You'll be prompted to choose a plan. If you don't, your account automatically drops to the free Basic tier — you never lose your data." },
-    { q: 'Does FinanceTracker+ work outside India?', a: 'Yes. We support 40+ countries and 60+ currencies with real-time exchange rates. Full bank connectivity in India (UPI, NEFT, IMPS), US, UK, Canada, and Australia.' },
-    { q: 'Can I cancel my subscription anytime?', a: 'Always. Cancel in two clicks from your account settings — no phone calls, no retention flows. Any unused days are refunded pro-rata.' },
-    { q: 'Do you sell my data to third parties?', a: 'Never. Your financial data is yours. We do not sell, rent, or share it with advertisers or third parties. Our business model is your subscription — full stop.' },
-  ];
-
-  const features = [
-    { icon: BarChart2,   color: C.mint,    title: 'Spending Analytics',      desc: 'Visual breakdowns by category, week-over-week and month-over-month. Spot trends before they become problems.' },
-    { icon: Target,      color: C.sky,     title: 'Goal Tracking',            desc: 'Set savings targets — house deposit, emergency fund, trip — and watch progress update automatically.' },
-    { icon: Bell,        color: C.gold,    title: 'Smart Alerts',             desc: 'Get notified about unusual charges, upcoming bills, and budget overruns before they catch you off guard.' },
-    { icon: Smartphone,  color: '#A78BFA', title: 'OCR Receipt Scanning',     desc: 'Photograph a receipt and we extract merchant, amount, date, and category in under two seconds.' },
-    { icon: RefreshCw,   color: C.mint,    title: 'Subscription Manager',     desc: 'See every recurring charge in one list. Cancel the ones you forgot about in three taps.' },
-    { icon: Lock,        color: C.sky,     title: 'Read-Only Bank Access',    desc: 'We connect via read-only APIs. We literally cannot move, transfer, or touch your funds — ever.' },
-    { icon: PieChart,    color: C.gold,    title: 'Net Worth Dashboard',      desc: 'Assets minus liabilities, tracked daily. Watch your real wealth grow over months and years.' },
-    { icon: CreditCard,  color: '#A78BFA', title: 'Crypto & Investments',     desc: 'Stocks, ETFs, crypto, and real estate in one portfolio view with live prices and allocation charts.' },
-  ];
 
   const stats = [
     { label: 'Active users', to: 2400000, prefix: '', suffix: '+', isFloat: false },
@@ -225,19 +205,18 @@ export default function About() {
       background: C.bg,
       color: C.slate,
       overflowX: 'hidden',
-      paddingTop: 88,
+      paddingTop: 60,
     }}>
       <Navbar />
 
       {/* ── HERO ──────────────────────────────────────────── */}
       <section style={{
-        background: C.ink,
+        background: '#fff',
         padding: '120px 24px 100px',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Radial gradient blob — matching Pricing hero */}
         <div style={{
           position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
           width: 900, height: 500, pointerEvents: 'none',
@@ -246,7 +225,6 @@ export default function About() {
         }} />
 
         <div style={{ maxWidth: 760, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          {/* Badge — exact Pricing style */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             background: 'rgba(18,196,139,0.10)',
@@ -260,7 +238,7 @@ export default function About() {
           <h1 style={{
             fontSize: 'clamp(40px, 6vw, 64px)', fontWeight: 900,
             lineHeight: 1.08, letterSpacing: '-0.03em',
-            color: '#fff', margin: '0 0 22px',
+            color: C.ink, margin: '0 0 22px',
           }}>
             Your money,{' '}
             <span style={{
@@ -270,8 +248,8 @@ export default function About() {
             }}>finally</span>{' '}under control
           </h1>
 
-          <p style={{ fontSize: 19, lineHeight: 1.7, color: 'rgba(255,255,255,0.55)', maxWidth: 540, margin: '0 auto 36px' }}>
-            FinanceTracker+ brings every account, budget, and investment into one beautifully clear view — so smart financial decisions become second nature.
+          <p style={{ fontSize: 19, lineHeight: 1.7, color: C.muted, maxWidth: 540, margin: '0 auto 36px' }}>
+            Fintriq brings every account, budget, and investment into one beautifully clear view — so smart financial decisions become second nature.
           </p>
 
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -285,9 +263,9 @@ export default function About() {
             </a>
             <a href="#features" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid rgba(255,255,255,0.12)',
-              color: 'rgba(255,255,255,0.85)', fontWeight: 600, fontSize: 16,
+              background: 'transparent',
+              border: `1px solid ${C.border}`,
+              color: C.slate, fontWeight: 600, fontSize: 16,
               padding: '15px 32px', borderRadius: 16, textDecoration: 'none',
             }}>
               Explore features
@@ -296,9 +274,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── STATS BAR (matching Pricing's dark bar) ──────────── */}
+      {/* ── STATS BAR ──────────── */}
       <section style={{
-        background: `linear-gradient(135deg, ${C.ink} 0%, ${C.inkD} 100%)`,
+        background: '#F0F7F4',
         padding: '64px 24px',
       }}>
         <div style={{
@@ -312,7 +290,7 @@ export default function About() {
               <div style={{ fontSize: 36, fontWeight: 900, color: C.mint, marginBottom: 6 }}>
                 <Counter to={s.to} prefix={s.prefix} suffix={s.suffix} isFloat={s.isFloat} />
               </div>
-              <div style={{ fontSize: 13, fontWeight: 500, color: C.soft }}>{s.label}</div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: C.slate }}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -340,14 +318,13 @@ export default function About() {
               Built to give you absolute clarity over money
             </h2>
             <p style={{ fontSize: 17, lineHeight: 1.8, color: C.muted, margin: '0 0 20px' }}>
-              Most people have no idea where their money actually goes. We built FinanceTracker+ to fix that — pulling every account, card, investment, and subscription into a single, honest picture. No jargon, no guesswork.
+              Most people have no idea where their money actually goes. We built Fintriq to fix that — pulling every account, card, investment, and subscription into a single, honest picture. No jargon, no guesswork.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.8, color: C.muted, margin: 0 }}>
               We're a team of engineers, designers, and financial planners who got tired of juggling five apps to understand one bank account. So we built the tool we wished existed.
             </p>
           </div>
 
-          {/* Right column: 3 highlight rows */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             {[
               { icon: Shield,   color: C.sky,  title: 'Bank-grade security',        desc: 'AES-256 encryption at rest, TLS 1.3 in transit. SOC 2 Type II certified. We never sell your data — ever.' },
@@ -372,51 +349,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── FEATURES GRID (dark section — matching Pricing dark stats) */}
-      <section id="features" style={{ background: `linear-gradient(135deg, ${C.ink} 0%, ${C.inkD} 100%)`, padding: '100px 24px' }}>
-        <div style={{ maxWidth: 1160, margin: '0 auto' }}>
-          <div style={{ marginBottom: 64 }}>
-            <SectionHeading
-              light
-              eyebrow="Everything you need"
-              title="One app. Zero financial blind spots."
-              sub="Every feature is designed to surface insights and keep your money where it belongs."
-            />
-          </div>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: 20,
-          }}>
-            {features.map((f, i) => (
-              <div key={i}
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: 24, padding: '28px 24px',
-                  transition: 'background 0.2s, border-color 0.2s',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; e.currentTarget.style.borderColor = 'rgba(18,196,139,0.25)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; }}
-              >
-                <div style={{
-                  width: 44, height: 44, borderRadius: 12,
-                  background: `${f.color}22`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  marginBottom: 18,
-                }}>
-                  <f.icon size={22} color={f.color} />
-                </div>
-                <p style={{ margin: '0 0 8px', fontWeight: 700, fontSize: 16, color: '#fff' }}>{f.title}</p>
-                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65, color: 'rgba(255,255,255,0.5)' }}>{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── HOW IT WORKS (timeline — unique to About) ────────── */}
-      <section style={{ padding: '100px 24px' }}>
+      {/* ── HOW IT WORKS ────────── */}
+      <section style={{ padding: '100px 24px', background: '#F6F8FA' }}>
         <div style={{ maxWidth: 1160, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 72 }}>
             <SectionHeading
@@ -437,7 +372,6 @@ export default function About() {
               { number: '04', icon: TrendingUp,  color: '#A78BFA', title: 'Take control',         desc: 'Set budgets, build goals, and get insights that turn data into confident decisions.' },
             ].map((s, i, arr) => (
               <div key={i} style={{ position: 'relative' }}>
-                {/* Connector line between steps */}
                 {i < arr.length - 1 && (
                   <div style={{
                     position: 'absolute', top: 24, left: 'calc(50% + 26px)',
@@ -468,231 +402,25 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── OUR VALUES (dark — unique section) ───────────────── */}
-      <section style={{ background: `linear-gradient(135deg, ${C.ink} 0%, #0D2B20 100%)`, padding: '100px 24px' }}>
+      {/* ── OUR VALUES ───────────────── */}
+      <section style={{ background: '#fff', padding: '100px 24px' }}>
         <div style={{ maxWidth: 1160, margin: '0 auto' }}>
           <div style={{ marginBottom: 64 }}>
             <SectionHeading
-              light
               eyebrow="What we stand for"
               title="Values we don't compromise on"
               sub="These aren't marketing copy — they're the decisions we make every day."
             />
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20 }}>
-            <ValueCard icon={Lock}          color={C.sky}     title="Privacy-first, always"   desc="Your data is never sold. Never shared with advertisers. Your finances belong to you, and only you." />
-            <ValueCard icon={BadgeCheck}    color={C.mint}    title="Radical transparency"    desc="No hidden fees, no dark patterns, no surprise charges. What you see is exactly what you pay." />
-            <ValueCard icon={HeartHandshake} color={C.gold}   title="People over metrics"     desc="We measure success by how much money you save, not by how long you spend in the app." />
-            <ValueCard icon={Lightbulb}     color="#A78BFA"   title="Insight over information" desc="We don't dump data on you. We surface the one thing that actually changes your financial behaviour." />
+            <ValueCardLight icon={Lock}          color={C.sky}     title="Privacy-first, always"   desc="Your data is never sold. Never shared with advertisers. Your finances belong to you, and only you." />
+            <ValueCardLight icon={BadgeCheck}    color={C.mint}    title="Radical transparency"    desc="No hidden fees, no dark patterns, no surprise charges. What you see is exactly what you pay." />
+            <ValueCardLight icon={HeartHandshake} color={C.gold}   title="People over metrics"     desc="We measure success by how much money you save, not by how long you spend in the app." />
+            <ValueCardLight icon={Lightbulb}     color="#A78BFA"   title="Insight over information" desc="We don't dump data on you. We surface the one thing that actually changes your financial behaviour." />
           </div>
         </div>
       </section>
 
-      {/* ── TESTIMONIALS (matching Pricing exactly) ──────────── */}
-      <section style={{ padding: '100px 24px', background: C.bg }}>
-        <div style={{ maxWidth: 1160, margin: '0 auto' }}>
-          <div style={{ marginBottom: 64 }}>
-            <SectionHeading
-              eyebrow="Real stories"
-              title="People who changed how they bank"
-              sub="Not marketing copy — actual things our users told us."
-            />
-          </div>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 24,
-          }}>
-            <TestimonialCard
-              quote="I saved ₹40,000 in 3 months just by seeing where my money was going. The AI suggestions are scarily accurate."
-              name="Priya S." role="Freelance Designer" avatar="PS" avatarColor={C.mint} plan="Pro"
-            />
-            <TestimonialCard
-              quote="The crypto tracking alone is worth it. Everything in one dashboard — no more jumping between 5 different apps."
-              name="Marcus R." role="Software Engineer" avatar="MR" avatarColor={C.sky} plan="Premium"
-            />
-            <TestimonialCard
-              quote="Family sharing changed how we budget together. Each person sees their own spending, shared goals are crystal clear."
-              name="Anita K." role="Family of 4" avatar="AK" avatarColor={C.gold} plan="Premium"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ── COMPARISON: Why FinanceTracker+ (unique to About) ── */}
-      <section style={{ padding: '100px 24px', background: 'linear-gradient(180deg,#F0F7F4 0%,#F6F8FA 100%)' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto' }}>
-          <div style={{ marginBottom: 56 }}>
-            <SectionHeading
-              eyebrow="Why us"
-              title="What makes us different"
-              sub="There are hundreds of finance apps. Here's why 2.4M people chose us."
-            />
-          </div>
-          <div style={{
-            background: C.bgCard,
-            border: `1px solid ${C.border}`,
-            borderRadius: 24,
-            overflow: 'hidden',
-          }}>
-            {/* Header */}
-            <div style={{
-              display: 'grid', gridTemplateColumns: '1fr 140px 140px',
-              background: C.ink, padding: '18px 28px',
-              gap: 8,
-            }}>
-              <div />
-              {['Others', 'FinanceTracker+'].map((label, i) => (
-                <div key={label} style={{ textAlign: 'center' }}>
-                  <span style={{
-                    fontSize: 12, fontWeight: 800,
-                    textTransform: 'uppercase', letterSpacing: '0.08em',
-                    color: i === 0 ? C.soft : C.mint,
-                  }}>{label}</span>
-                </div>
-              ))}
-            </div>
-
-            {[
-              ['Read-only bank access (can\'t move funds)', false, true],
-              ['Zero ads, zero data selling', false, true],
-              ['Works in 40+ countries', false, true],
-              ['Family sharing included', false, true],
-              ['AI-powered auto-categorisation', false, true],
-              ['Free plan available forever', false, true],
-              ['Pro-rata refunds on cancellation', false, true],
-            ].map(([feature, others, us], i) => (
-              <div key={i} style={{
-                display: 'grid', gridTemplateColumns: '1fr 140px 140px',
-                padding: '14px 28px', gap: 8,
-                background: i % 2 === 0 ? C.bgCard : '#F8FBFA',
-                borderBottom: i < 6 ? `1px solid #EEF3F1` : 'none',
-                alignItems: 'center',
-              }}>
-                <span style={{ fontSize: 14, fontWeight: 500, color: C.slate }}>{feature}</span>
-                {[others, us].map((val, j) => (
-                  <div key={j} style={{ textAlign: 'center' }}>
-                    {val
-                      ? <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24, borderRadius: '50%', background: 'rgba(18,196,139,0.12)' }}>
-                          <CheckCircle size={14} color={C.mint} />
-                        </span>
-                      : <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24, borderRadius: '50%', background: '#F3F5F6' }}>
-                          <span style={{ width: 8, height: 2, background: '#C2CBD1', borderRadius: 2, display: 'block' }} />
-                        </span>
-                    }
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAQ ──────────────────────────────────────────────── */}
-      <section style={{ padding: '100px 24px', background: '#F0F7F4' }}>
-        <div style={{ maxWidth: 680, margin: '0 auto' }}>
-          <div style={{ marginBottom: 56 }}>
-            <SectionHeading
-              eyebrow="Got questions?"
-              title="Frequently asked"
-              sub="If it's not here, our support team replies in under 2 hours."
-            />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {faqs.map((faq, i) => (
-              <div key={i} style={{
-                background: C.bgCard,
-                border: `1px solid ${openFaq === i ? '#A8EDD5' : C.border}`,
-                borderRadius: 18, overflow: 'hidden',
-                transition: 'border-color 0.2s',
-              }}>
-                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{
-                  width: '100%', display: 'flex', alignItems: 'center',
-                  justifyContent: 'space-between', padding: '20px 24px',
-                  background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left',
-                }}>
-                  <span style={{ fontSize: 15, fontWeight: 700, color: C.ink, paddingRight: 16 }}>{faq.q}</span>
-                  {openFaq === i
-                    ? <ChevronUp size={18} color={C.mint} style={{ flexShrink: 0 }} />
-                    : <ChevronDown size={18} color={C.soft} style={{ flexShrink: 0 }} />
-                  }
-                </button>
-                {openFaq === i && (
-                  <div style={{ padding: '0 24px 20px' }}>
-                    <p style={{ margin: 0, fontSize: 15, lineHeight: 1.75, color: C.muted }}>{faq.a}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FINAL CTA (exact match to Pricing) ───────────────── */}
-      <section style={{
-        padding: '112px 24px',
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        background: `linear-gradient(135deg, ${C.ink} 0%, #0D2B20 100%)`,
-      }}>
-        <div style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(18,196,139,0.25) 0%, transparent 65%)',
-        }} />
-        <div style={{ maxWidth: 640, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'rgba(18,196,139,0.12)',
-            border: '1px solid rgba(18,196,139,0.25)',
-            borderRadius: 99, padding: '6px 16px', marginBottom: 24,
-          }}>
-            <Gift size={13} color="#5FE3B5" />
-            <span style={{ fontSize: 13, fontWeight: 600, color: '#5FE3B5' }}>14 days free, no card required</span>
-          </div>
-
-          <h2 style={{
-            fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 900,
-            lineHeight: 1.1, color: '#fff',
-            margin: '0 0 18px', letterSpacing: '-0.03em',
-          }}>
-            Start tracking in{' '}
-            <span style={{
-              backgroundImage: `linear-gradient(90deg, ${C.mint}, ${C.sky})`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}>60 seconds</span>
-          </h2>
-
-          <p style={{ fontSize: 18, color: C.soft, margin: '0 auto 40px', maxWidth: 440 }}>
-            Connect your first bank account in under a minute. Your dashboard is ready immediately.
-          </p>
-
-          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="/signup" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: C.mint, color: '#fff', fontWeight: 700, fontSize: 16,
-              padding: '15px 32px', borderRadius: 16, textDecoration: 'none',
-              boxShadow: '0 6px 24px rgba(18,196,139,0.4)',
-            }}>
-              Try Pro free for 14 days <ArrowRight size={18} />
-            </a>
-            <a href="/pricing" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'transparent',
-              border: '1px solid rgba(255,255,255,0.2)',
-              color: '#fff', fontWeight: 600, fontSize: 16,
-              padding: '15px 32px', borderRadius: 16, textDecoration: 'none',
-            }}>
-              View pricing
-            </a>
-          </div>
-
-          <p style={{ marginTop: 24, fontSize: 13, color: '#5A7080' }}>
-            Trusted by 2.4M users · Cancel anytime · AES-256 encrypted
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

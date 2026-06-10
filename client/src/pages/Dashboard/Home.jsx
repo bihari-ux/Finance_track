@@ -112,25 +112,25 @@ export default function Home() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Dashboard</h1>
-            <p className="text-slate-500 mt-1">Welcome back! Here's your financial overview.</p>
+            <h1 className="text-3xl font-bold tracking-tight" style={{ color: '#0E1A22' }}>Dashboard</h1>
+            <p className="mt-1" style={{ color: '#4A5560' }}>Welcome back! Here's your financial overview.</p>
           </div>
-          <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-sm font-medium text-slate-600">Live Updates</span>
+          <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full border shadow-sm" style={{ borderColor: '#E5ECF0' }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#12C48B' }}></span>
+            <span className="text-sm font-medium" style={{ color: '#283139' }}>Live Updates</span>
           </div>
         </div>
 
         {/* Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Total Balance Card */}
-          <div className="bg-indigo-600 border border-indigo-700 p-6 rounded-2xl relative overflow-hidden group shadow-lg shadow-indigo-600/20">
+          <div className="p-6 rounded-2xl relative overflow-hidden group shadow-lg" style={{ background: '#12C48B', borderColor: '#0fa876', borderStyle: 'solid', borderWidth: 1, boxShadow: '0 8px 30px rgba(18,196,139,0.2)' }}>
             <div className="absolute -right-6 -top-6 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
               <IndianRupee className="w-32 h-32 text-white" />
             </div>
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-indigo-100 font-medium">Total Balance</p>
+                <p className="font-medium" style={{ color: 'rgba(255,255,255,0.85)' }}>Total Balance</p>
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
                   <IndianRupee className="w-5 h-5 text-white" />
                 </div>
@@ -142,45 +142,54 @@ export default function Home() {
           </div>
 
           {/* Income Card */}
-          <div className="bg-white border border-slate-200 p-6 rounded-2xl relative overflow-hidden group shadow-sm hover:shadow-md transition-all">
+          <div className="p-6 rounded-2xl relative overflow-hidden group shadow-lg" style={{ background: '#40C3F9', borderColor: '#2bace6', borderStyle: 'solid', borderWidth: 1, boxShadow: '0 8px 30px rgba(64,195,249,0.2)' }}>
+            <div className="absolute -right-6 -top-6 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
+              <ArrowUpRight className="w-32 h-32 text-white" />
+            </div>
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-slate-500 font-medium">Total Income</p>
-                <div className="p-2 bg-emerald-50 rounded-lg border border-emerald-100">
-                  <ArrowUpRight className="w-5 h-5 text-emerald-600" />
+                <p className="font-medium" style={{ color: 'rgba(255,255,255,0.85)' }}>Total Income</p>
+                <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                  <ArrowUpRight className="w-5 h-5 text-white" />
                 </div>
               </div>
-              <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
+              <h2 className="text-3xl font-bold text-white tracking-tight">
                 ₹{totalIncome.toLocaleString()}
               </h2>
             </div>
           </div>
 
           {/* Expense Card */}
-          <div className="bg-white border border-slate-200 p-6 rounded-2xl relative overflow-hidden group shadow-sm hover:shadow-md transition-all">
+          <div className="p-6 rounded-2xl relative overflow-hidden group shadow-lg" style={{ background: '#FF6FAF', borderColor: '#e6599b', borderStyle: 'solid', borderWidth: 1, boxShadow: '0 8px 30px rgba(255,111,175,0.2)' }}>
+            <div className="absolute -right-6 -top-6 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
+              <ArrowDownRight className="w-32 h-32 text-white" />
+            </div>
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-slate-500 font-medium">Total Expense</p>
-                <div className="p-2 bg-rose-50 rounded-lg border border-rose-100">
-                  <ArrowDownRight className="w-5 h-5 text-rose-600" />
+                <p className="font-medium" style={{ color: 'rgba(255,255,255,0.85)' }}>Total Expense</p>
+                <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                  <ArrowDownRight className="w-5 h-5 text-white" />
                 </div>
               </div>
-              <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
+              <h2 className="text-3xl font-bold text-white tracking-tight">
                 ₹{totalExpense.toLocaleString()}
               </h2>
             </div>
           </div>
 
           {/* Investment Card */}
-          <div className="bg-white border border-slate-200 p-6 rounded-2xl relative overflow-hidden group shadow-sm hover:shadow-md transition-all">
+          <div className="p-6 rounded-2xl relative overflow-hidden group shadow-lg" style={{ background: '#FFC053', borderColor: '#e6a740', borderStyle: 'solid', borderWidth: 1, boxShadow: '0 8px 30px rgba(255,192,83,0.2)' }}>
+            <div className="absolute -right-6 -top-6 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
+              <TrendingUp className="w-32 h-32 text-white" />
+            </div>
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-slate-500 font-medium">Total Invested</p>
-                <div className="p-2 bg-indigo-50 rounded-lg border border-indigo-100">
-                  <TrendingUp className="w-5 h-5 text-indigo-600" />
+                <p className="font-medium" style={{ color: 'rgba(255,255,255,0.85)' }}>Total Invested</p>
+                <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                  <TrendingUp className="w-5 h-5 text-white" />
                 </div>
               </div>
-              <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
+              <h2 className="text-3xl font-bold text-white tracking-tight">
                 ₹{totalInvestment.toLocaleString()}
               </h2>
             </div>
@@ -190,11 +199,11 @@ export default function Home() {
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Area Chart Section */}
-          <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm lg:col-span-2">
+          <div className="bg-white border p-6 rounded-2xl shadow-sm lg:col-span-2" style={{ borderColor: '#E5ECF0' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-2">
-                <TrendingUp className="w-5 h-5 text-indigo-500" />
-                <h3 className="text-lg font-bold text-slate-800">Cash Flow Overview</h3>
+                <TrendingUp className="w-5 h-5" style={{ color: '#12C48B' }} />
+                <h3 className="text-lg font-bold" style={{ color: '#0E1A22' }}>Cash Flow Overview</h3>
               </div>
             </div>
             
@@ -202,17 +211,17 @@ export default function Home() {
               {chartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#F0F3F6" vertical={false} />
                     <XAxis 
                       dataKey="date" 
-                      stroke="#94a3b8" 
+                      stroke="#8FA3B0" 
                       fontSize={12} 
                       tickLine={false} 
                       axisLine={false} 
                       dy={10}
                     />
                     <YAxis 
-                      stroke="#94a3b8" 
+                      stroke="#8FA3B0" 
                       fontSize={12} 
                       tickLine={false} 
                       axisLine={false} 
@@ -224,14 +233,14 @@ export default function Home() {
                       }}
                     />
                     <Tooltip
-                      cursor={{ fill: '#f8fafc' }}
+                      cursor={{ fill: '#F8FBFA' }}
                       contentStyle={{
                         backgroundColor: '#ffffff',
-                        borderColor: '#e2e8f0',
+                        borderColor: '#E5ECF0',
                         borderRadius: '12px',
                         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                       }}
-                      itemStyle={{ color: '#0f172a', fontWeight: 500 }}
+                      itemStyle={{ color: '#0E1A22', fontWeight: 500 }}
                     />
                     <Bar
                       dataKey="income"
@@ -242,7 +251,7 @@ export default function Home() {
                     />
                     <Bar
                       dataKey="expense"
-                      fill="#E54C7C"
+                      fill="#FF6FAF"
                       name="Expense"
                       radius={[4, 4, 0, 0]}
                       maxBarSize={40}
@@ -250,7 +259,7 @@ export default function Home() {
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="flex flex-col items-center justify-center h-full text-slate-400">
+                <div className="flex flex-col items-center justify-center h-full" style={{ color: '#A0ADB6' }}>
                   <TrendingUp className="w-12 h-12 mb-4 opacity-30" />
                   <p>No data available yet.</p>
                 </div>
@@ -259,10 +268,10 @@ export default function Home() {
           </div>
 
           {/* Pie Chart Section */}
-          <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+          <div className="bg-white border p-6 rounded-2xl shadow-sm" style={{ borderColor: '#E5ECF0' }}>
             <div className="flex items-center space-x-2 mb-6">
-              <PieChartIcon className="w-5 h-5 text-indigo-500" />
-              <h3 className="text-lg font-bold text-slate-800">Expenses by Category</h3>
+              <PieChartIcon className="w-5 h-5" style={{ color: '#40C3F9' }} />
+              <h3 className="text-lg font-bold" style={{ color: '#0E1A22' }}>Expenses by Category</h3>
             </div>
             
             <div className="h-[350px] w-full flex flex-col items-center justify-center">
@@ -291,7 +300,7 @@ export default function Home() {
                   </PieChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="flex flex-col items-center justify-center h-full text-slate-400">
+                <div className="flex flex-col items-center justify-center h-full" style={{ color: '#A0ADB6' }}>
                   <PieChartIcon className="w-12 h-12 mb-4 opacity-30" />
                   <p>No expenses to analyze.</p>
                 </div>
@@ -301,37 +310,37 @@ export default function Home() {
         </div>
 
         {/* Recent Transactions List */}
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-slate-100 flex items-center justify-between">
+        <div className="bg-white border rounded-2xl shadow-sm overflow-hidden" style={{ borderColor: '#E5ECF0' }}>
+          <div className="p-6 border-b flex items-center justify-between" style={{ borderColor: '#F0F3F6' }}>
             <div className="flex items-center space-x-2">
-              <Activity className="w-5 h-5 text-indigo-500" />
-              <h3 className="text-lg font-bold text-slate-800">Recent Transactions</h3>
+              <Activity className="w-5 h-5" style={{ color: '#FFC053' }} />
+              <h3 className="text-lg font-bold" style={{ color: '#0E1A22' }}>Recent Transactions</h3>
             </div>
           </div>
-          <div className="divide-y divide-slate-100">
+          <div className="divide-y" style={{ borderColor: '#F0F3F6' }}>
             {transactions.length > 0 ? (
               transactions.slice(0, 5).map((t) => (
-                <div key={t._id} className="p-4 px-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                <div key={t._id} className="p-4 px-6 flex items-center justify-between transition-colors hover:bg-gray-50">
                   <div className="flex items-center space-x-4">
-                    <div className={`p-3 rounded-xl ${t.type === 'income' ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                    <div className={`p-3 rounded-xl`} style={{ background: t.type === 'income' ? '#E1F2D8' : '#FFE1ED', color: t.type === 'income' ? '#12C48B' : '#FF6FAF' }}>
                       {t.type === 'income' ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownRight className="w-5 h-5" />}
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-800">{t.title}</p>
-                      <div className="flex items-center space-x-2 text-sm text-slate-500 mt-0.5">
+                      <p className="font-semibold" style={{ color: '#283139' }}>{t.title}</p>
+                      <div className="flex items-center space-x-2 text-sm mt-0.5" style={{ color: '#8FA3B0' }}>
                         <span className="font-medium">{t.category || 'Other'}</span>
                         <span>•</span>
                         <span>{moment(t.createdAt).fromNow()}</span>
                       </div>
                     </div>
                   </div>
-                  <div className={`font-bold text-lg ${t.type === 'income' ? 'text-emerald-600' : 'text-rose-600'}`}>
+                  <div className={`font-bold text-lg`} style={{ color: t.type === 'income' ? '#12C48B' : '#0E1A22' }}>
                     {t.type === 'income' ? '+' : '-'}₹{t.amount.toLocaleString()}
                   </div>
                 </div>
               ))
             ) : (
-              <div className="p-8 text-center text-slate-500">
+              <div className="p-8 text-center" style={{ color: '#A0ADB6' }}>
                 No recent transactions found.
               </div>
             )}

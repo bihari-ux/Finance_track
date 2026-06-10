@@ -42,6 +42,19 @@ router.post('/', protect, async (req, res) => {
       user: req.user.id
     });
 
+    // Send transaction notification email
+    try {
+      const sendEmail = require('../utils/sendEmail');
+      const actionText = type === 'income' ? 'added to' : (type === 'expense' ? 'spent from' : 'recorded in');
+      sendEmail({
+        email: req.user.email,
+        subject: `Transaction Alert: ${title}`,
+        message: `Hello ${req.user.name},\n\nA new transaction has been ${actionText} your Fintriq account.\n\nDetails:\n- Title: ${title}\n- Amount: ₹${amount}\n- Category: ${category}\n- Type: ${type}\n\nKeep track of your finances on the Fintriq dashboard.\n\nBest regards,\nThe Fintriq Team`,
+      }).catch(err => console.log('Email notification failed:', err.message));
+    } catch (err) {
+      console.log('Failed to trigger email notification:', err.message);
+    }
+
     return res.status(201).json({
       success: true,
       data: transaction

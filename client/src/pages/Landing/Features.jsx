@@ -7,7 +7,7 @@ export default function Features() {
     <div className="min-h-screen bg-white font-sans overflow-hidden selection:bg-[#12C48B] selection:text-white">
       <Navbar />
       
-      <main className="relative pt-[120px] lg:pt-[160px] pb-20 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+      <main className="relative mt-[60px] pt-16 lg:pt-24 pb-20 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-[44px] sm:text-[56px] font-black text-[#283139] leading-[1.1] tracking-tight mb-6">
             Powerful Features for <br/><span className="text-[#12C48B]">Absolute Control</span>
@@ -45,7 +45,7 @@ export default function Features() {
 
         <div className="text-center mb-16 mt-32">
           <h2 className="text-3xl lg:text-4xl font-black text-[#283139] mb-4">Advanced Capabilities</h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">FinanceTracker+ isn't just about recording expenses. We offer advanced tools for modern wealth building.</p>
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">Fintriq isn't just about recording expenses. We offer advanced tools for modern wealth building.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">

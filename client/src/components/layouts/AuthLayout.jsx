@@ -5,10 +5,8 @@ export default function AuthLayout() {
   return ( 
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900">
-            Finance Tracker
-          </h2>
+        <div className="text-center flex justify-center mb-6">
+          <img src="/image/fantriq.png" alt="Fintriq" className="h-16 w-auto object-contain mix-blend-multiply contrast-[1.2] brightness-[1.1] scale-[1.3] origin-center" />
         </div>
         <Outlet />
       </div>

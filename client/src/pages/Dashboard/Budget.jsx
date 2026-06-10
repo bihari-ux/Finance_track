@@ -66,16 +66,16 @@ export default function Budget() {
       <Toaster position="top-right" />
       <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500 pb-10">
         <div className="flex items-center space-x-3 mb-8">
-          <div className="p-3 bg-amber-100 rounded-xl shadow-sm border border-amber-200">
-            <Target className="w-8 h-8 text-amber-600" />
+          <div className="p-3 rounded-xl shadow-sm border" style={{ background: '#E0F7FA', borderColor: 'rgba(0,188,212,0.2)' }}>
+            <Target className="w-8 h-8" style={{ color: '#00BCD4' }} />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Budget Planner</h1>
-            <p className="text-slate-500 mt-1">Set monthly limits and track your spending goals.</p>
+            <h1 className="text-3xl font-bold tracking-tight" style={{ color: '#0E1A22' }}>Budget Planner</h1>
+            <p className="mt-1" style={{ color: '#4A5560' }}>Set monthly limits and track your spending goals.</p>
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm relative overflow-hidden">
+        <div className="bg-white border rounded-2xl p-8 shadow-sm relative overflow-hidden" style={{ borderColor: '#E5ECF0' }}>
           <div className="absolute top-0 right-0 p-8 opacity-5">
             <Target className="w-48 h-48" />
           </div>
@@ -83,28 +83,32 @@ export default function Budget() {
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h3 className="text-lg font-bold text-slate-500 uppercase tracking-wider">Monthly Limit</h3>
+                <h3 className="text-lg font-bold uppercase tracking-wider" style={{ color: '#8FA3B0' }}>Monthly Limit</h3>
                 {isEditingBudget ? (
                   <div className="flex items-center mt-2 space-x-3">
                     <div className="relative">
-                      <span className="absolute left-4 top-3 font-bold text-slate-400">₹</span>
+                      <span className="absolute left-4 top-3 font-bold" style={{ color: '#8FA3B0' }}>₹</span>
                       <input 
                         type="number"
                         value={tempBudget}
                         onChange={(e) => setTempBudget(Number(e.target.value))}
-                        className="pl-8 pr-4 py-2 border-2 border-indigo-500 rounded-xl font-bold text-xl outline-none"
+                        className="pl-8 pr-4 py-2 border-2 rounded-xl font-bold text-xl outline-none"
+                        style={{ borderColor: '#12C48B', color: '#0E1A22' }}
                         autoFocus
                       />
                     </div>
-                    <button onClick={handleSaveBudget} className="bg-indigo-600 text-white px-4 py-2 rounded-xl font-medium hover:bg-indigo-700">Save</button>
-                    <button onClick={() => setIsEditingBudget(false)} className="text-slate-500 hover:text-slate-700 font-medium px-2">Cancel</button>
+                    <button onClick={handleSaveBudget} className="text-white px-4 py-2 rounded-xl font-medium transition-colors" style={{ background: '#12C48B' }} onMouseEnter={e => e.currentTarget.style.background = '#0fa876'} onMouseLeave={e => e.currentTarget.style.background = '#12C48B'}>Save</button>
+                    <button onClick={() => setIsEditingBudget(false)} className="font-medium px-2 transition-colors" style={{ color: '#4A5560' }} onMouseEnter={e => e.currentTarget.style.color = '#0E1A22'} onMouseLeave={e => e.currentTarget.style.color = '#4A5560'}>Cancel</button>
                   </div>
                 ) : (
                   <div className="flex items-center mt-1 group">
-                    <h2 className="text-4xl font-black text-slate-800">₹{monthlyBudget.toLocaleString()}</h2>
+                    <h2 className="text-4xl font-black" style={{ color: '#0E1A22' }}>₹{monthlyBudget.toLocaleString()}</h2>
                     <button 
                       onClick={() => setIsEditingBudget(true)}
-                      className="ml-4 text-sm font-medium text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity bg-indigo-50 px-3 py-1 rounded-lg hover:bg-indigo-100"
+                      className="ml-4 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity px-3 py-1 rounded-lg"
+                      style={{ background: '#E1F2D8', color: '#12C48B' }}
+                      onMouseEnter={e => e.currentTarget.style.background = 'rgba(18,196,139,0.2)'}
+                      onMouseLeave={e => e.currentTarget.style.background = '#E1F2D8'}
                     >
                       Edit Limit
                     </button>
@@ -116,50 +120,47 @@ export default function Budget() {
             <div className="space-y-4">
               <div className="flex justify-between items-end">
                 <div>
-                  <p className="text-slate-500 font-medium mb-1">Spent so far</p>
-                  <p className="text-2xl font-bold text-slate-800">₹{currentMonthExpenses.toLocaleString()}</p>
+                  <p className="font-medium mb-1" style={{ color: '#4A5560' }}>Spent so far</p>
+                  <p className="text-2xl font-bold" style={{ color: '#0E1A22' }}>₹{currentMonthExpenses.toLocaleString()}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-slate-500 font-medium mb-1">Remaining</p>
-                  <p className={`text-2xl font-bold ${isOverBudget ? 'text-rose-600' : 'text-emerald-600'}`}>
+                  <p className="font-medium mb-1" style={{ color: '#4A5560' }}>Remaining</p>
+                  <p className={`text-2xl font-bold`} style={{ color: isOverBudget ? '#FF6FAF' : '#12C48B' }}>
                     {isOverBudget ? '- ' : ''}₹{Math.abs(monthlyBudget - currentMonthExpenses).toLocaleString()}
                   </p>
                 </div>
               </div>
 
-              <div className="h-4 w-full bg-slate-100 rounded-full overflow-hidden">
+              <div className="h-4 w-full rounded-full overflow-hidden" style={{ background: '#F6F8FA' }}>
                 <div 
-                  className={`h-full transition-all duration-1000 ${
-                    budgetPercentage > 90 ? 'bg-rose-500' : 
-                    budgetPercentage > 75 ? 'bg-amber-500' : 'bg-emerald-500'
-                  }`}
-                  style={{ width: `${budgetPercentage}%` }}
+                  className={`h-full transition-all duration-1000`}
+                  style={{ width: `${budgetPercentage}%`, background: budgetPercentage > 90 ? '#FF6FAF' : budgetPercentage > 75 ? '#FFC053' : '#12C48B' }}
                 ></div>
               </div>
               
               <div className="flex justify-between items-center pt-2">
-                <span className="text-sm font-bold text-slate-400">0%</span>
-                <span className={`text-sm font-bold ${isOverBudget ? 'text-rose-500' : 'text-slate-600'}`}>
+                <span className="text-sm font-bold" style={{ color: '#8FA3B0' }}>0%</span>
+                <span className={`text-sm font-bold`} style={{ color: isOverBudget ? '#FF6FAF' : '#4A5560' }}>
                   {budgetPercentage.toFixed(1)}% Used
                 </span>
-                <span className="text-sm font-bold text-slate-400">100%</span>
+                <span className="text-sm font-bold" style={{ color: '#8FA3B0' }}>100%</span>
               </div>
             </div>
 
             {isOverBudget ? (
-              <div className="mt-8 bg-rose-50 border border-rose-200 rounded-xl p-4 flex items-start space-x-3">
-                <AlertCircle className="w-6 h-6 text-rose-600 shrink-0" />
+              <div className="mt-8 border rounded-xl p-4 flex items-start space-x-3" style={{ background: '#FFE1ED', borderColor: 'rgba(255,111,175,0.2)' }}>
+                <AlertCircle className="w-6 h-6 shrink-0" style={{ color: '#FF6FAF' }} />
                 <div>
-                  <h4 className="font-bold text-rose-800">Budget Exceeded!</h4>
-                  <p className="text-rose-600 text-sm mt-1">You have spent more than your monthly limit. Please review your expenses.</p>
+                  <h4 className="font-bold" style={{ color: '#0E1A22' }}>Budget Exceeded!</h4>
+                  <p className="text-sm mt-1" style={{ color: '#4A5560' }}>You have spent more than your monthly limit. Please review your expenses.</p>
                 </div>
               </div>
             ) : (
-              <div className="mt-8 bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-start space-x-3">
-                <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />
+              <div className="mt-8 border rounded-xl p-4 flex items-start space-x-3" style={{ background: '#E1F2D8', borderColor: 'rgba(18,196,139,0.2)' }}>
+                <CheckCircle2 className="w-6 h-6 shrink-0" style={{ color: '#12C48B' }} />
                 <div>
-                  <h4 className="font-bold text-emerald-800">On Track</h4>
-                  <p className="text-emerald-600 text-sm mt-1">Great job! Your spending is well within your budget limit.</p>
+                  <h4 className="font-bold" style={{ color: '#0E1A22' }}>On Track</h4>
+                  <p className="text-sm mt-1" style={{ color: '#4A5560' }}>Great job! Your spending is well within your budget limit.</p>
                 </div>
               </div>
             )}

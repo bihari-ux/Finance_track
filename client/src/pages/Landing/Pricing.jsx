@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/layouts/Navbar';
 import {
   Check, X, Sparkles, ArrowRight, HelpCircle,
@@ -26,7 +26,7 @@ export default function Pricing() {
     },
     {
       q: 'Do you support international banks?',
-      a: 'FinanceTracker+ connects to 10,000+ banks across North America, Europe, Asia, and Australia.',
+      a: 'Fintriq connects to 10,000+ banks across North America, Europe, Asia, and Australia.',
     },
     {
       q: 'Can I switch plans later?',
@@ -56,29 +56,47 @@ export default function Pricing() {
 
   const testimonials = [
     {
-      name: 'Priya S.',
-      role: 'Freelance Designer',
-      avatar: 'PS',
-      color: '#12C48B',
+      name: 'Rohan M.',
+      role: 'Freelance Developer',
+      image: '/image/bihari-kumar-rawat.jpeg',
       text: "I saved ₹40,000 in 3 months just by seeing where my money was going. The AI suggestions are scarily accurate.",
       plan: 'Pro',
     },
     {
       name: 'Marcus R.',
       role: 'Software Engineer',
-      avatar: 'MR',
-      color: '#40C3F9',
+      image: '/image/bihari-kumar-rawat1.jpeg',
       text: 'The crypto tracking alone is worth it. Everything in one dashboard — no more jumping between 5 apps.',
       plan: 'Premium',
     },
     {
-      name: 'Anita K.',
-      role: 'Family of 4',
-      avatar: 'AK',
-      color: '#FFC053',
-      text: 'Family sharing changed how we budget together. Each person sees their own spending, shared goals are crystal clear.',
+      name: 'Amit V.',
+      role: 'Startup Founder',
+      image: '/image/bihari-kumar-rawat2.jpeg',
+      text: 'Having my business and personal expenses separated automatically is a lifesaver. Best UI I have seen in a finance app.',
       plan: 'Premium',
     },
+    {
+      name: 'David L.',
+      role: 'Entrepreneur',
+      image: '/image/WhatsApp Image 2026-06-04 at 9.40.21 PM.jpeg',
+      text: 'Bank-level security and clear charts gave me total confidence in managing my wealth. Absolutely recommended.',
+      plan: 'Pro',
+    },
+    {
+      name: 'Vikash S.',
+      role: 'Crypto Investor',
+      image: '/image/bihari-kumar-rawat.jpeg',
+      text: "The portfolio analysis is incredibly fast and responsive. I've never used a tracker that feels this premium.",
+      plan: 'Premium',
+    },
+    {
+      name: 'Rahul K.',
+      role: 'Content Creator',
+      image: '/image/bihari-kumar-rawat1.jpeg',
+      text: 'Managing sponsorships and daily expenses used to be a mess. Fintriq makes budgeting actually enjoyable!',
+      plan: 'Pro',
+    }
   ];
 
   const comparisonRows = [
@@ -96,7 +114,7 @@ export default function Pricing() {
 
   return (
     <div
-      className="min-h-screen font-sans overflow-x-hidden pt-[88px]"
+      className="min-h-screen font-sans overflow-x-hidden pt-[60px]"
       style={{ background: '#F6F8FA', color: '#283139' }}
     >
       <Navbar />
@@ -144,7 +162,7 @@ export default function Pricing() {
             </span>
           </h1>
           <p className="text-lg leading-relaxed max-w-xl mx-auto mb-10" style={{ color: '#4A5560' }}>
-            Join 2.4 million people who track, plan, and grow their wealth with FinanceTracker+.
+            Join 2.4 million people who track, plan, and grow their wealth with Fintriq.
             Start free — no credit card needed.
           </p>
 
@@ -273,7 +291,7 @@ export default function Pricing() {
       {/* ─── SECTION 2: STATS BAR ──────────────────────────────────── */}
       <section
         style={{
-          background: 'linear-gradient(135deg,#0E1A22 0%,#1A2D3A 100%)',
+          background: '#F0F7F4',
           padding: '64px 16px',
         }}
       >
@@ -286,7 +304,7 @@ export default function Pricing() {
               >
                 {s.value}
               </div>
-              <div className="text-sm font-medium" style={{ color: '#8FA3B0' }}>
+              <div className="text-sm font-medium" style={{ color: '#283139' }}>
                 {s.label}
               </div>
             </div>
@@ -357,8 +375,9 @@ export default function Pricing() {
               className="grid"
               style={{
                 gridTemplateColumns: '1fr repeat(3, 130px)',
-                background: '#0E1A22',
+                background: '#F6F8FA',
                 padding: '20px 28px',
+                borderBottom: '1px solid #E5ECF0',
               }}
             >
               <div />
@@ -422,57 +441,114 @@ export default function Pricing() {
       </section>
 
       {/* ─── SECTION 5: TESTIMONIALS ───────────────────────────────── */}
-      <section className="py-28 px-4 max-w-6xl mx-auto">
+      <section className="py-28 px-4 max-w-6xl mx-auto overflow-hidden">
         <SectionHeading
           eyebrow="Real stories"
           title="People who changed how they bank"
           sub="Not marketing copy — actual things our users told us."
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 mt-14">
-          {testimonials.map((t) => (
-            <div
-              key={t.name}
-              className="rounded-3xl p-8 border flex flex-col"
-              style={{
-                background: '#fff',
-                borderColor: '#E5ECF0',
-                boxShadow: '0 1px 6px rgba(0,0,0,0.05)',
-              }}
-            >
-              {/* Stars */}
-              <div className="flex gap-0.5 mb-5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-4 h-4 fill-current"
-                    style={{ color: '#FFC053' }}
-                  />
-                ))}
-              </div>
-              <p
-                className="text-[15px] leading-relaxed flex-1 mb-6"
-                style={{ color: '#4A5560' }}
+        <style>
+          {`
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(calc(-100% - 28px)); }
+            }
+            .animate-marquee {
+              animation: marquee 35s linear infinite;
+            }
+            .marquee-container:hover .animate-marquee {
+              animation-play-state: paused;
+            }
+          `}
+        </style>
+        <div className="relative mt-14 overflow-hidden rounded-3xl pb-8 marquee-container flex gap-7">
+          <div className="flex gap-7 animate-marquee min-w-max">
+            {testimonials.map((t, idx) => (
+              <div
+                key={`t1-${idx}`}
+                className="rounded-3xl p-8 border flex flex-col shrink-0 w-[320px] md:w-[380px]"
+                style={{
+                  background: '#fff',
+                  borderColor: '#E5ECF0',
+                  boxShadow: '0 1px 6px rgba(0,0,0,0.05)',
+                }}
               >
-                "{t.text}"
-              </p>
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-black text-white shrink-0"
-                  style={{ background: t.color }}
-                >
-                  {t.avatar}
+                {/* Stars */}
+                <div className="flex gap-0.5 mb-5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-current"
+                      style={{ color: '#FFC053' }}
+                    />
+                  ))}
                 </div>
-                <div>
-                  <div className="text-sm font-bold" style={{ color: '#0E1A22' }}>
-                    {t.name}
+                <p
+                  className="text-[15px] leading-relaxed flex-1 mb-6"
+                  style={{ color: '#4A5560' }}
+                >
+                  "{t.text}"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-[#12C48B]">
+                    <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
                   </div>
-                  <div className="text-xs" style={{ color: '#8FA3B0' }}>
-                    {t.role} · {t.plan} Plan
+                  <div>
+                    <div className="text-sm font-bold" style={{ color: '#0E1A22' }}>
+                      {t.name}
+                    </div>
+                    <div className="text-xs" style={{ color: '#8FA3B0' }}>
+                      {t.role} · {t.plan} Plan
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          
+          <div className="flex gap-7 animate-marquee min-w-max" aria-hidden="true">
+            {testimonials.map((t, idx) => (
+              <div
+                key={`t2-${idx}`}
+                className="rounded-3xl p-8 border flex flex-col shrink-0 w-[320px] md:w-[380px]"
+                style={{
+                  background: '#fff',
+                  borderColor: '#E5ECF0',
+                  boxShadow: '0 1px 6px rgba(0,0,0,0.05)',
+                }}
+              >
+                {/* Stars */}
+                <div className="flex gap-0.5 mb-5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-current"
+                      style={{ color: '#FFC053' }}
+                    />
+                  ))}
+                </div>
+                <p
+                  className="text-[15px] leading-relaxed flex-1 mb-6"
+                  style={{ color: '#4A5560' }}
+                >
+                  "{t.text}"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-[#12C48B]">
+                    <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold" style={{ color: '#0E1A22' }}>
+                      {t.name}
+                    </div>
+                    <div className="text-xs" style={{ color: '#8FA3B0' }}>
+                      {t.role} · {t.plan} Plan
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -528,21 +604,14 @@ export default function Pricing() {
       {/* ─── SECTION 7: FINAL CTA ──────────────────────────────────── */}
       <section
         className="py-28 px-4 text-center relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg,#0E1A22 0%,#0D2B20 100%)' }}
+        style={{ background: '#fff' }}
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse at 50% 0%, rgba(18,196,139,0.25) 0%, transparent 65%)',
-          }}
-        />
         <div className="relative z-10 max-w-2xl mx-auto">
           <div
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 border"
             style={{
               background: 'rgba(18,196,139,0.12)',
-              color: '#5FE3B5',
+              color: '#0D9B6E',
               borderColor: 'rgba(18,196,139,0.25)',
             }}
           >
@@ -551,7 +620,7 @@ export default function Pricing() {
           </div>
           <h2
             className="text-4xl sm:text-5xl font-black leading-tight mb-5"
-            style={{ color: '#fff' }}
+            style={{ color: '#0E1A22' }}
           >
             Start tracking in{' '}
             <span
@@ -564,7 +633,7 @@ export default function Pricing() {
               60 seconds
             </span>
           </h2>
-          <p className="text-lg mb-10" style={{ color: '#8FA3B0' }}>
+          <p className="text-lg mb-10" style={{ color: '#4A5560' }}>
             Connect your first bank account in under a minute. Your dashboard is ready immediately.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -585,15 +654,15 @@ export default function Pricing() {
               className="inline-flex items-center justify-center gap-2 font-bold py-4 px-8 rounded-2xl border transition-all"
               style={{
                 background: 'transparent',
-                color: '#fff',
-                borderColor: 'rgba(255,255,255,0.2)',
+                color: '#283139',
+                borderColor: '#DCE8E2',
                 textDecoration: 'none',
               }}
             >
               View live demo
             </a>
           </div>
-          <p className="mt-6 text-sm" style={{ color: '#5A7080' }}>
+          <p className="mt-6 text-sm" style={{ color: '#8FA3B0' }}>
             Trusted by 2.4M users · Cancel anytime · AES-256 encrypted
           </p>
         </div>
