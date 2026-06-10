@@ -18,20 +18,22 @@ export default function Sidebar({ children }) {
       const res = await getTransactions();
       const data = res.data.data;
       
-      let csvContent = "Date,Type,Category,Amount,Description\n";
+      let htmlContent = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8" /><style>table { font-family: Arial; border-collapse: collapse; } th, td { border: 1px solid #ddd; padding: 8px; text-align: left; } th { background-color: #f2f2f2; }</style></head><body>`;
+      htmlContent += `<table><tr><th>Date</th><th>Type</th><th>Category</th><th>Amount</th><th>Description</th></tr>`;
       
       data.forEach(row => {
         const date = new Date(row.createdAt).toLocaleDateString();
-        const type = row.type.toUpperCase();
-        const desc = `"${row.text.replace(/"/g, '""')}"`;
-        csvContent += `${date},${type},${row.category},${row.amount},${desc}\n`;
+        const type = row.type ? row.type.toUpperCase() : '';
+        const descText = row.title || row.text || '';
+        htmlContent += `<tr><td>${date}</td><td>${type}</td><td>${row.category || ''}</td><td>${row.amount}</td><td>${descText}</td></tr>`;
       });
+      htmlContent += `</table></body></html>`;
       
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const blob = new Blob([htmlContent], { type: 'application/vnd.ms-excel' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.setAttribute("href", url);
-      link.setAttribute("download", "FinTrack_Export.csv");
+      link.setAttribute("download", "Fintriq_Export.xls");
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
