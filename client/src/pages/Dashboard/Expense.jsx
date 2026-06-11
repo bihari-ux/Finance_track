@@ -5,7 +5,7 @@ import { ArrowDownRight, Plus, Trash2, Tag, Edit2, X } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import moment from 'moment';
 
-const EXPENSE_CATEGORIES = ['Housing', 'Food', 'Transportation', 'Utilities', 'Entertainment', 'Healthcare', 'Shopping', 'Rent', 'Fare', 'Subscription', 'Other'];
+const EXPENSE_CATEGORIES = ['Housing', 'Food', 'Transportation', 'Utilities', 'Entertainment', 'Healthcare', 'Shopping', 'Rent', 'Fare', 'Subscription', 'Loan Given', 'Other'];
 
 export default function Expense() {
   const [expenses, setExpenses] = useState([]);
@@ -92,7 +92,7 @@ export default function Expense() {
   return (
     <Sidebar>
       <Toaster position="top-right" />
-      <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in duration-500">
+      <div className="w-full space-y-8 animate-in fade-in duration-500">
         <div className="flex items-center space-x-3 mb-8">
           <div className="p-3 rounded-xl shadow-sm border" style={{ background: '#FFE1ED', borderColor: 'rgba(255,111,175,0.2)' }}>
             <ArrowDownRight className="w-8 h-8" style={{ color: '#FF6FAF' }} />
@@ -209,13 +209,19 @@ export default function Expense() {
                   {expenses.map((expense) => (
                     <div
                       key={expense._id}
-                      className="flex items-center justify-between p-4 bg-white rounded-xl border shadow-sm transition-all group"
-                      style={{ borderColor: '#E5ECF0' }}
-                      onMouseEnter={e => e.currentTarget.style.background = '#F8FBFA'}
-                      onMouseLeave={e => e.currentTarget.style.background = '#fff'}
+                      className="flex items-center justify-between p-4 rounded-xl border shadow-sm transition-all group"
+                      style={{ 
+                        borderColor: expense.category === 'Loan Given' ? 'rgba(18,196,139,0.3)' : '#E5ECF0',
+                        backgroundColor: expense.category === 'Loan Given' ? '#F5FBF7' : '#fff'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.backgroundColor = expense.category === 'Loan Given' ? '#E1F2D8' : '#F8FBFA'}
+                      onMouseLeave={e => e.currentTarget.style.backgroundColor = expense.category === 'Loan Given' ? '#F5FBF7' : '#fff'}
                     >
                       <div className="flex items-center space-x-4">
-                        <div className="p-3 rounded-xl" style={{ background: '#FFE1ED', color: '#FF6FAF' }}>
+                        <div className="p-3 rounded-xl" style={{ 
+                          background: expense.category === 'Loan Given' ? '#E1F2D8' : '#FFE1ED', 
+                          color: expense.category === 'Loan Given' ? '#12C48B' : '#FF6FAF' 
+                        }}>
                           <ArrowDownRight className="w-5 h-5" />
                         </div>
                         <div>
@@ -228,7 +234,16 @@ export default function Expense() {
                         </div>
                       </div>
                       <div className="flex items-center space-x-4">
-                        <span className="font-black text-xl" style={{ color: '#0E1A22' }}>-₹{expense.amount.toLocaleString()}</span>
+                        <div className="flex flex-col items-end">
+                          <span className="font-black text-xl" style={{ color: expense.category === 'Loan Given' ? '#12C48B' : '#0E1A22' }}>
+                            {expense.category === 'Loan Given' ? '' : '-'}₹{expense.amount.toLocaleString()}
+                          </span>
+                          {expense.category === 'Loan Given' && (
+                            <span className="text-[10px] font-bold uppercase tracking-wider mt-0.5 px-2 py-0.5 rounded-full" style={{ background: '#E1F2D8', color: '#12C48B' }}>
+                              Receivable
+                            </span>
+                          )}
+                        </div>
                         <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button
                             onClick={() => handleEdit(expense)}

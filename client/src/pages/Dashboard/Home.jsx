@@ -107,7 +107,7 @@ export default function Home() {
 
   return (
     <Sidebar>
-      <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500">
+      <div className="w-full space-y-8 animate-in fade-in duration-500">
         
         {/* Header */}
         <div className="flex items-center justify-between">

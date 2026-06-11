@@ -66,7 +66,7 @@ export default function Subscriptions() {
   return (
     <Sidebar>
       <Toaster position="top-right" />
-      <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in duration-500 pb-10">
+      <div className="w-full space-y-8 animate-in fade-in duration-500 pb-10">
         <div className="flex items-center space-x-3 mb-8">
           <div className="p-3 rounded-xl shadow-sm border" style={{ background: '#ede9fe', borderColor: 'rgba(139,92,246,0.2)' }}>
             <CreditCard className="w-8 h-8" style={{ color: '#8b5cf6' }} />

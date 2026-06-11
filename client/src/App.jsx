@@ -14,6 +14,7 @@ import Investment from './pages/Dashboard/Investment';
 import Marketing from './pages/Dashboard/Marketing';
 import Budget from './pages/Dashboard/Budget';
 import Subscriptions from './pages/Dashboard/Subscriptions';
+import Receivables from './pages/Dashboard/Receivables';
 import About from './pages/Landing/About';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route path="/marketing" exact element={<Marketing />} />
             <Route path="/budget" exact element={<Budget />} />
             <Route path="/subscriptions" exact element={<Subscriptions />} />
+            <Route path="/receivables" exact element={<Receivables />} />
           </Route>
         </Routes>
       </Router>

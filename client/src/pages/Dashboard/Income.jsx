@@ -92,7 +92,7 @@ export default function Income() {
   return (
     <Sidebar>
       <Toaster position="top-right" />
-      <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in duration-500">
+      <div className="w-full space-y-8 animate-in fade-in duration-500">
         <div className="flex items-center space-x-3 mb-8">
           <div className="p-3 rounded-xl shadow-sm border" style={{ background: '#E1F2D8', borderColor: 'rgba(18,196,139,0.2)' }}>
             <ArrowUpRight className="w-8 h-8" style={{ color: '#12C48B' }} />
